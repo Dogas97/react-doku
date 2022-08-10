@@ -1,11 +1,13 @@
-//TODO
-function getGridValues() { }
-
 export default function Grid({ grid }) {
-    { var size = grid.size }
     return (
         <>
-            {size > 0 && <h1>{size}</h1>}
+            {
+                grid.values && grid.values.map((valuesX) =>
+                    valuesX.map((value, id) =>
+                        value ? <p key={id}>{value}</p> : <input key={id} type="text" />
+                    )
+                )
+            }
         </>
     )
 }

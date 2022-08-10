@@ -1,23 +1,42 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Grid from "./Grid";
 
 function App() {
   const gridSizeRef = useRef(null)
-  const [grid, setGrid] = useState({ grid: null, size: '9' })
+  const [grid, setGrid] = useState(
+    {
+      size: '81',
+      dificulty: null,
+      values: null
+    })
 
   function handleGrid() {
-    setGrid({ grid: null, size: gridSizeRef.current.value })
+    var size = gridSizeRef.current.value
+
+    setGrid(
+      {
+        size: size,
+        dificulty: null,
+        values: Array(Math.sqrt(size)).fill().map(() => Array(Math.sqrt(size)).fill(0))
+      })
   }
 
   return (
     <>
       <select ref={gridSizeRef}>
-        <option value="16">Small (4 by 4)</option>
-        <option value="81">Normal (9 by 9)</option>
-        <option value="256">Big (16 by 16)</option>
+        <option value='16'>
+          Small (4 by 4)
+        </option>
+        <option value='81'>
+          Normal (9 by 9)
+        </option>
+        <option value='256'>
+          Big (16 by 16)
+        </option>
       </select>
+
       <button onClick={handleGrid}>
-        Generate
+        Generate Sudoku
       </button>
 
       <Grid grid={grid} />
