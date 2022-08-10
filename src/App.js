@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Grid from "./Grid";
 
-function App() {
+export default function App() {
   const gridSizeRef = useRef(null)
   const [grid, setGrid] = useState(
     {
@@ -43,5 +43,3 @@ function App() {
     </>
   );
 }
-
-export default App;
