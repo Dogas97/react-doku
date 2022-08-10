@@ -1,2 +1,2 @@
 # react-doku
-Sudoku fully made in ReactJS
+Sudoku fully made using ReactJS! (I hope) 😂
