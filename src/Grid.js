@@ -13,7 +13,7 @@ export default function Grid({ grid }) {
                     alignItems: "center"
                 }}>
                     <div><b>State:</b> {grid.state}</div>
-                    <div><b>Size:</b> {grid.size}</div>
+                    <div><b>Size:</b> {grid.size} x {grid.size}</div>
                     <div><b>Dificulty:</b> {grid.dificulty}</div>
                 </div>
 
@@ -39,7 +39,7 @@ export default function Grid({ grid }) {
                                                 value ? value
                                                     : <input
                                                         key={"column" + id}
-                                                        maxLength={Math.sqrt(grid.size).toString().length}
+                                                        maxLength={grid.size.toString().length}
                                                         style={{
                                                             border: 0,
                                                             padding: 0,
