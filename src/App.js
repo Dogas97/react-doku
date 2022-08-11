@@ -13,25 +13,43 @@ import Grid from "./Grid";
 export default function App() {
   const gridSizeRef = useRef(null)
   const gridDifficultyRef = useRef(null)
-  const [grid, setGrid] = useState(
-    {
-      state: 1,
-      size: '81',
-      dificulty: 2,
-      values: Array(9).fill().map(() => Array(9).fill(0))
+  const [grid, setGrid] = useState({
+    state: 1,
+    size: '9',
+    dificulty: 2,
+    values: Array(9).fill().map(() => Array(9).fill(0))
+  })
+
+  const handleCreateGrid = () => {
+    const size = parseInt(gridSizeRef.current.value)
+    const difficulty = parseInt(gridDifficultyRef.current.value)
+    const values = Array(size).fill().map(() => Array(size).fill(8))
+
+    const filteredValues = values.map((valuesX, id) => {
+      var deleteCount = Math.round(.25 * size * (difficulty + Math.random()))
+
+      var nums = new Set();
+      while (nums.size < deleteCount) nums.add(Math.round(Math.random() * (size - 1)));
+      for (let item of nums) valuesX[item] = 0
+
+      return valuesX
     })
 
-  function handleCreateGrid() {
-    let size = gridSizeRef.current.value
-    let difficulty = gridDifficultyRef.current.value
+    //check for empty Matrix
+    const matrixSize = (filteredValues.filter(value => Math.max(...value) > 0 ? true : false)).length
 
-    setGrid(
-      {
+    if (matrixSize < size / 2)
+      handleCreateGrid()
+    else {
+      const newGrid = {
         state: 0,
         size: size,
         dificulty: difficulty,
-        values: Array(Math.sqrt(size)).fill().map(() => Array(Math.sqrt(size)).fill(1))
-      })
+        values: filteredValues
+      }
+
+      setGrid(newGrid)
+    }
   }
 
   return (
@@ -48,13 +66,13 @@ export default function App() {
         </option>
       </select>
       <select ref={gridSizeRef}>
-        <option value='16'>
+        <option value='4'>
           Small (4 by 4)
         </option>
-        <option value='81'>
+        <option value='9'>
           Medium (9 by 9)
         </option>
-        <option value='256'>
+        <option value='16'>
           Large (16 by 16)
         </option>
       </select>
