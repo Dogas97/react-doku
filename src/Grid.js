@@ -21,7 +21,7 @@ export default function Grid({ grid }) {
                     border: "4px solid black"
                 }}>
                     {
-                        grid.values && grid.values.map((valuesX, id) =>
+                        grid.values && grid.state === 1 && grid.values.map((valuesX, id) =>
                             <div key={"line" + id} style={{ display: "flex" }}>
                                 {
                                     valuesX.map((value, id) =>

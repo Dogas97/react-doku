@@ -13,7 +13,7 @@ import Grid from "./Grid";
 export default function App() {
   const gridSizeRef = useRef(null)
   const gridDifficultyRef = useRef(null)
-  const [grid, setGrid] = useState({
+  var [grid, setGrid] = useState({
     state: 1,
     size: '9',
     dificulty: 2,
@@ -52,6 +52,14 @@ export default function App() {
     }
   }
 
+  const handleStartGrid = (() => {
+    if (grid.state === 0) {
+      grid.state = 1
+    } else { }
+
+    console.log(grid)
+  })
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <select ref={gridDifficultyRef}>
@@ -82,6 +90,10 @@ export default function App() {
       </button>
 
       <Grid grid={grid} />
+
+      <button onClick={handleStartGrid}>
+        Start Sudoku
+      </button>
     </div>
   );
 }
