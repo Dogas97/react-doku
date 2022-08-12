@@ -16,7 +16,7 @@ export default function App() {
   var [grid, setGrid] = useState({
     state: 1,
     size: '9',
-    dificulty: 2,
+    difficulty: 2,
     values: Array(9).fill().map(() => Array(9).fill(0))
   })
 
@@ -44,7 +44,7 @@ export default function App() {
       const newGrid = {
         state: 0,
         size: size,
-        dificulty: difficulty,
+        difficulty: difficulty,
         values: filteredValues
       }
 
@@ -53,11 +53,13 @@ export default function App() {
   }
 
   const handleStartGrid = (() => {
-    if (grid.state === 0) {
-      grid.state = 1
-    } else { }
-
-    console.log(grid)
+    if (grid.state === 0)
+      setGrid({
+        state: 1,
+        size: grid.size,
+        difficulty: grid.difficulty,
+        values: grid.values
+      })
   })
 
   return (
