@@ -13,12 +13,7 @@ import Grid from "./Grid";
 export default function App() {
   const gridSizeRef = useRef(null)
   const gridDifficultyRef = useRef(null)
-  var [grid, setGrid] = useState({
-    state: 1,
-    size: '9',
-    difficulty: 2,
-    values: Array(9).fill().map(() => Array(9).fill(0))
-  })
+  var [grid, setGrid] = useState()
 
   const handleCreateGrid = () => {
     const size = parseInt(gridSizeRef.current.value)
@@ -53,7 +48,7 @@ export default function App() {
   }
 
   const handleStartGrid = (() => {
-    if (grid.state === 0)
+    if (grid && grid.state === 0)
       setGrid({
         state: 1,
         size: grid.size,
